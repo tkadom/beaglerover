@@ -18,4 +18,14 @@ server.get('/motor', function (req, res, next) {
 	})
 })
 
-
+server.post('/motor', function (req, res, next) {
+  if (req.params.name === undefined) {
+    return next(new restify.InvalidArgumentError('Name must be supplied'))
+  }
+ 
+  userSave.create({ name: req.params.name }, function (error, motor) {
+    if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+ 
+    res.send(201, motor)
+  })
+})
