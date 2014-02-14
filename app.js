@@ -2,7 +2,7 @@ var restify = require('restify');
 var motorSave = require('save')('motor');
 
 var ip_addr = '127.0.0.1';
-var port = 9090 ;
+var port = 12345 ;
 
 var server = restify.createServer({
 name : "beaglerover"
@@ -23,7 +23,7 @@ server.post('/motor', function (req, res, next) {
     return next(new restify.InvalidArgumentError('Name must be supplied'))
   }
  
-  userSave.create({ name: req.params.name }, function (error, motor) {
+  motorSave.create({ name: req.params.name }, function (error, motor) {
     if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
  
     res.send(201, motor)
