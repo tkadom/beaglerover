@@ -14,10 +14,11 @@ var app = express();
 // initialize beagle bone
 var bscript=require('bonescript');
 bscript.pinMode('P8_13', bscript.OUTPUT); // Servo
-bscript.pinMode('P9_14', b.OUTPUT); // left motor 
-bscript.pinMode('P9_16', b.OUTPUT);
-bscript.pinMode('P9_21', b.OUTPUT); // right motor 
-bscript.pinMode('P9_22', b.OUTPUT);
+bscript.pinMode('P9_14', bscript.OUTPUT); // right motor backward
+bscript.pinMode('P9_16', bscript.OUTPUT); // right motor forward
+bscript.pinMode('P9_21', bscript.OUTPUT); // left motor backward 
+bscript.pinMode('P9_22', bscript.OUTPUT); // left motor forward
+bscript.analogWrite('P8_13', 0.01 , 60);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -40,33 +41,43 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/forward', function (req, res) {
-     bscript.analogWrite('P8_13', 0.01 , 60);
-  res.send('Moving Forward now');
+     bscript.analogWrite('P9_16', 1.0 , 2000);
+     bscript.analogWrite('P9_22', 1.0 , 2000);
+  res.send('Moving forward now');
 });
 
-app.get('/backward', function (req, res) {
-     bscript.analogWrite('P8_13', 0.01 , 60);
-  res.send('Moving Forward now');
+app.get('/back', function (req, res) {
+     bscript.analogWrite('P9_14', 1.0 , 2000);
+     bscript.analogWrite('P9_21', 1.0 , 2000);
+  res.send('Moving backward now');
 });
 
 app.get('/left', function (req, res) {
-     bscript.analogWrite('P8_13', 0.01 , 60);
-  res.send('Moving Forward now');
+     bscript.analogWrite('P9_16', 1.0 , 2000);
+     bscript.analogWrite('P9_21', 1.0 , 2000);
+  res.send('Moving left now');
 });
 
 app.get('/right', function (req, res) {
-     bscript.analogWrite('P8_13', 0.01 , 60);
-  res.send('Moving Forward now');
+     bscript.analogWrite('P9_14', 1.0 , 2000);
+     bscript.analogWrite('P9_22', 1.0 , 2000);
+  res.send('Moving right now');
 });
 
 app.get('/stop', function (req, res) {
-	bscript.analogWrite('P8_13', 0.09 , 60);
-	res.send('stopping now');
+     bscript.analogWrite('P9_14', 0.0 , 2000);
+     bscript.analogWrite('P9_16', 0.0 , 2000);
+     bscript.analogWrite('P9_21', 0.0 , 2000);
+     bscript.analogWrite('P9_22', 0.0 , 2000);
+     res.send('stopping now');
 });
 
-app.get('/angle', function (req, res) {
-	bscript.analogWrite('P8_13', 0.09 , 60);
-	res.send('stopping now');
+app.get('/angle/:value', function (req, res) {
+  if ((req.params.value > 0.01) && ( req.params.value < 0.081 ))
+  {
+    bscript.analogWrite('P8_13', req.params.value , 60);
+   }
+   res.send('setting angle');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
