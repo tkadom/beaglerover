@@ -40,6 +40,10 @@ function movebot(direction){
 </script>
  
 <hr/>
+<div id="container" style="width:100%">
+	<div id="header" style="background-color:#FFA500;">
+		<h1 style="margin-bottom:0;">TW Rover</h1></div>
+	<div id="naviation" style="float:left;width:90%">
 <p>
   <table align="center">
     <tr>
@@ -54,7 +58,17 @@ function movebot(direction){
     <tr>
       <td></td><td><center><button onclick='movebot("back")'>Back</button></center></td><td></td>
     </tr>
-  </table>
+  </table> </div>
+  <div id="viewangle" style="width:10%;float:left;">
+    <form>
+	    <input id="angle" type="range" min="0.011" max="0.081" step="0.005" class=vert />
+    </form>
+    <style scoped>
+       .vert { width: 20px; height: 200px; -webkit-appearance: slider-vertical; }
+    </style>
+    </div>
+    </div>
+
 </p>
 <hr/>
 <center>
