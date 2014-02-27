@@ -21,7 +21,7 @@ bscript.pinMode('P9_22', bscript.OUTPUT); // left motor forward
 bscript.analogWrite('P8_13', 0.01 , 60);
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
