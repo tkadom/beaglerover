@@ -16,7 +16,8 @@
   <Require feature="rpc"/>
   <Require feature="views"/>
 </ModulePrefs>
-<Content type="html"><![CDATA[
+<Content type="html">
+<![CDATA[
 <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.1"></script>
  
 <script type="text/javascript" language="javascript"> 
@@ -31,6 +32,11 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 } 
+
+function tilt(angle){
+var fullPath = baseURI + "angle/" + angle ;
+  document.getElementById("response").src=httpGet(fullPath) ;
+}
 
 function movebot(direction){
   var fullPath = baseURI + direction ;
@@ -61,7 +67,7 @@ function movebot(direction){
   </table> </div>
   <div id="viewangle" style="width:10%;float:left;">
     <form>
-	    <input id="angle" type="range" min="0.011" max="0.081" step="0.005" class=vert />
+	    <input id="angle" type="range" min="0.011" max="0.081" step="0.005" class=vert onchange="tilt(this.value)"/>
     </form>
     <style scoped>
        .vert { width: 20px; height: 200px; -webkit-appearance: slider-vertical; }
