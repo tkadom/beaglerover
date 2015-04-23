@@ -21,10 +21,10 @@
 <script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.1"></script>
  
 <script type="text/javascript" language="javascript"> 
-var baseURI = "http://skiptree.fwd.wf/";
+var baseURI = "https://773bd95a.ngrok.com/"
 
 function httpGet(theUrl)
-{
+{ 
     var xmlHttp = null;
 
     xmlHttp = new XMLHttpRequest();

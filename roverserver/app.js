@@ -43,24 +43,28 @@ app.get('/users', user.list);
 app.get('/forward', function (req, res) {
      bscript.analogWrite('P9_16', 1.0 , 2000);
      bscript.analogWrite('P9_22', 1.0 , 2000);
+     console.log('forward' );
   res.send('Moving forward now');
 });
 
 app.get('/back', function (req, res) {
      bscript.analogWrite('P9_14', 1.0 , 2000);
      bscript.analogWrite('P9_21', 1.0 , 2000);
+     console.log('back' );
   res.send('Moving backward now');
 });
 
 app.get('/left', function (req, res) {
      bscript.analogWrite('P9_16', 1.0 , 2000);
      bscript.analogWrite('P9_21', 1.0 , 2000);
+     console.log('left' );
   res.send('Moving left now');
 });
 
 app.get('/right', function (req, res) {
      bscript.analogWrite('P9_14', 1.0 , 2000);
      bscript.analogWrite('P9_22', 1.0 , 2000);
+     console.log('right' );
   res.send('Moving right now');
 });
 
@@ -69,10 +73,12 @@ app.get('/stop', function (req, res) {
      bscript.analogWrite('P9_16', 0.0 , 2000);
      bscript.analogWrite('P9_21', 0.0 , 2000);
      bscript.analogWrite('P9_22', 0.0 , 2000);
+     console.log('stop' );
      res.send('stopping now');
 });
 
 app.get('/angle/:value', function (req, res) {
+  console.log('angle value ' + req.params.value );
   if ((req.params.value > 0.01) && ( req.params.value < 0.081 ))
   {
     bscript.analogWrite('P8_13', req.params.value , 60);

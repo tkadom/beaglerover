@@ -1,4 +1,7 @@
 google hangout API URl
 
-https://code.google.com/apis/console/b/0/?noredirect#project:23614419286:hangout
+So this API is pretty finicky.  It also appears that the developer console link for testing your hangout app does not work.  better way to go is to start a google hangout.  on the left part of the hangout screen you will see three dots.   click on those, and then add an app.  click on the developer tab, and select the extension you were working on in the console.  That should then bring the app up in your hangout.
+
+Additionally, after much pain and anguish, the baseuri for the rover has to be set up as https, or there will likely be a security exception that will prevent your controls from working.
+
 
